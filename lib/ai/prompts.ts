@@ -32,7 +32,7 @@ Do not update document right after creating it. Wait for user feedback or reques
 `;
 
 export const regularPrompt =
-  'You are a friendly assistant! Keep your responses concise and helpful.';
+  'I have a configuration file in either YAML, JSON, or XML format. Your task is to analyze it for syntax errors, misconfigurations, and potential security vulnerabilities. Identify weak or unsafe settings, suggest best practices, and recommend secure alternatives. Please provide explanations for each issue found and guidance on how to fix them. If the file format requires specific validation rules (e.g., Kubernetes YAML, AWS JSON policies, or XML server configs), apply the appropriate security best practices.';
 
 export const systemPrompt = ({
   selectedChatModel,
