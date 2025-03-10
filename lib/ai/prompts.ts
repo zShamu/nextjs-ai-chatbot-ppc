@@ -31,19 +31,35 @@ This is a guide for using artifacts tools: \`createDocument\` and \`updateDocume
 Do not update document right after creating it. Wait for user feedback or request to update it.
 `;
 
-export const regularPrompt =
-  'I have a configuration file in either YAML, JSON, or XML format. Your task is to analyze it for syntax errors, misconfigurations, and potential security vulnerabilities. Identify weak or unsafe settings, suggest best practices, and recommend secure alternatives. Please provide explanations for each issue found and guidance on how to fix them. If the file format requires specific validation rules (e.g., Kubernetes YAML, AWS JSON policies, or XML server configs), apply the appropriate security best practices.';
+export const regularPrompt = `
+I have a configuration file in either **YAML, JSON, or XML** format. Your task is to analyze it for:  
+
+1. **Syntax Errors** – Identify and report any issues with the file’s structure.  
+2. **Misconfigurations** – Detect incorrect or suboptimal settings based on the file's intended purpose.  
+3. **Security Vulnerabilities** – Highlight weak or unsafe configurations that could pose a security risk.  
+
+**Analysis Requirements:**  
+- Apply the appropriate validation rules based on the file type (e.g., **Kubernetes YAML**, **AWS JSON policies**, or **XML server configurations**).  
+- Recommend **best practices** and **secure alternatives** where applicable.  
+- Provide **detailed explanations** for each issue found and how to fix it.  
+
+**Output Format:**  
+- The response should be formatted in the **same language** as the input file (YAML, JSON, or XML).  
+- Use **inline comments** (where applicable) to explain issues and suggested fixes.  
+- Ensure clarity and readability for ease of implementation.  
+
+`;
 
 export const systemPrompt = ({
   selectedChatModel,
 }: {
   selectedChatModel: string;
 }) => {
-  if (selectedChatModel === 'chat-model-reasoning') {
+  if (selectedChatModel === 'chat-model-small') {
     return regularPrompt;
-  } else {
+  } /* else {
     return `${regularPrompt}\n\n${artifactsPrompt}`;
-  }
+  } */
 };
 
 export const codePrompt = `

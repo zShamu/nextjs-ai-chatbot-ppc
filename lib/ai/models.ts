@@ -1,5 +1,5 @@
 import { openai } from '@ai-sdk/openai';
-import { fireworks } from '@ai-sdk/fireworks';
+//import { fireworks } from '@ai-sdk/fireworks';
 import {
   customProvider,
   extractReasoningMiddleware,
@@ -19,10 +19,10 @@ export const myProvider = customProvider({
     'title-model': openai('gpt-4o-mini'),
     'artifact-model': openai('gpt-4o-mini'),
   },
-  imageModels: {
+  /* imageModels: {
     'small-model': openai.image('dall-e-2'),
     'large-model': openai.image('dall-e-3'),
-  },
+  }, */
 });
 
 interface ChatModel {

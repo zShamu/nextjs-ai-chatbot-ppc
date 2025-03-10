@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: insecure-ssh-pod
+  labels:
+    app: insecure-ssh
+spec:
+  containers:
+    - name: insecure-ssh-container
+      image: rastasheep/ubuntu-sshd:18.04  # Imagen con SSH habilitado (poco segura)
+      ports:
+        - containerPort: 22
+      securityContext:
+        privileged: true  # ⚠ Ejecuta con privilegios elevados (riesgo de escape)
+      volumeMounts:
+        - mountPath: /root/.ssh
+          name: ssh-keys
+  volumes:
+    - name: ssh-keys
+      hostPath:
+        path: /root/.ssh  # ⚠ Expone claves SSH del host al contenedor (muy inseguro)
+  hostNetwork: true  # ⚠ Permite acceso a la red del nodo, exponiendo puertos
+  hostPID: true  # ⚠ Comparte el espacio de procesos del host (permite escalada de privilegios)
